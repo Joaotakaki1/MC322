@@ -6,7 +6,7 @@ public class Cliente {
 	private int idade;
 
 	// Construtor
-	public Cliente (String nome, String cpf, String dataNascimento, int idade) {
+	public Cliente (String nome, String cpf, String dataNascimento,String endereco, int idade) {
 		this.nome = nome;
 		this.cpf = cpf;
 		this.dataNascimento =dataNascimento;
@@ -57,8 +57,8 @@ public class Cliente {
 	}
 	
 	public String toString() {
-		return "Cliente [nome=" + nome + ", cpf=" + cpf + ", dataNascimento=" + dataNascimento + ", endereco="
-				+ endereco + ", idade=" + idade + "]";
+		return "Cliente: \n" + "Nome: " + nome + "\nCpf: " + cpf + "\nData de Nascimento: " + dataNascimento + "\nEndereco: "
+				+ endereco + "\nIdade: " + idade + "\n";
 	}
 	
 	//Validacao de cpf
@@ -75,7 +75,6 @@ public class Cliente {
 	
 	public boolean validaCPF(String cpf) {
 		String cpfNumerico = cpf.replaceAll("[^0-9]","" );
-		System.out.println(cpfNumerico);
 		if (cpfNumerico.length() == 11){
 			if (verificaDigitosIguais (cpfNumerico)) {
 				return false;
