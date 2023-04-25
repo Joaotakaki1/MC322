@@ -37,7 +37,10 @@ public class Main {
 		if (clientePF.adicionaVeiculo(corsa2))
 			System.out.println("Veiculo cadastrado com sucesso!");
 		Sinistro teste = new Sinistro("08/10/2003", "Rua s", seguradora, corsa, clientePF);
+		Sinistro teste2 = new Sinistro("08/10/2003", "Rua s", seguradora, corsa2, clientePJ);
 		if (seguradora.gerarSinistro(teste))
+			System.out.println("Sinistro gerado com sucesso!");
+		if (seguradora.gerarSinistro(teste2))
 			System.out.println("Sinistro gerado com sucesso!");
 		seguradora.toString();
 		corsa.toString();

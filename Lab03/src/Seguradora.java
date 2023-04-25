@@ -90,32 +90,28 @@ public class Seguradora {
 	}
 
 	public boolean removeCliente(String c) {
-		String cNumerico = c.replaceAll("[^0-9]", "");
+		if (listaClientes.size() == 0) {
+			System.out.println("Não há cleintes cadastrados");
+			return false;
+		}
 		/// CPF
 		for (Cliente cliente : listaClientes) {
 			try {
-				if (((ClientePF) cliente).getCpf() == cNumerico) {
-					if (listaSinistros != null) {
-						for (Sinistro sinistro : listaSinistros) {
-							if (sinistro.getCliente().equals(cliente))
-								listaSinistros.remove(sinistro);
-						}
-					}
-					return listaClientes.remove(cliente);
-
-				}
-
-				/// CNPJ
-			} catch (Exception ex) {
-
-				if (((ClientePJ) cliente).getCnpj() == cNumerico) {
+				if ((((ClientePF) cliente).getCpf()).equals(c)) {
 					for (Sinistro sinistro : listaSinistros) {
-						if (sinistro.getCliente().equals(cliente))
+						if (sinistro.getCliente() == (cliente))
 							listaSinistros.remove(sinistro);
 					}
 					return listaClientes.remove(cliente);
 				}
-
+			} catch (Exception e) {
+				if ((((ClientePJ) cliente).getCnpj()).equals(c)) {
+					for (Sinistro sinistro : listaSinistros) {
+						if (sinistro.getCliente() == (cliente))
+							listaSinistros.remove(sinistro);
+					}
+					return listaClientes.remove(cliente);
+				}
 			}
 		}
 		return false;
