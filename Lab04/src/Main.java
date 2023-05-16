@@ -380,9 +380,9 @@ public class Main {
 									System.out.println("Erro ao cadastrar o veículo");
 								}
 							}
-							if (!achou)
-								System.out.println("Nenhum cliente encontrado");
 						}
+						if (!achou)
+							System.out.println("Nenhum cliente encontrado");
 					}
 				}
 				if (!found)
