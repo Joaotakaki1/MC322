@@ -1,32 +1,24 @@
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Sinistro {
-	private String data;
+	private Date data;
 	private String endereco;
 	private final int id;
+	private static ArrayList<Integer> ids = new ArrayList<Integer>();
 	private Seguradora seguradora;
 	private Veiculo veiculo;
 	private Cliente cliente;
 
 	// Construtor
-	public Sinistro(String data, String endereco, Seguradora seguradora, Veiculo veiculo, Cliente cliente) {
+	public Sinistro(Date data, String endereco, Seguradora seguradora, Veiculo veiculo, Cliente cliente) {
 		Random gerador = new Random();
-		int ver = gerador.nextInt();
-		try {
-			for (Sinistro i : seguradora.getListaSinistros()) {
-				if (i.id == ver)
-					throw new Exception();
-			}
-		} catch (Exception ex) {
-			ArrayList<Integer> ids = new ArrayList<Integer>();
-			for (Sinistro i : seguradora.getListaSinistros()) {
-				ids.add(i.id);
-			}
-			while (ids.contains(ver)) {
-				ver = gerador.nextInt();
-			}
-		}
+		int ver = 0;
+		do {
+			ver = gerador.nextInt();
+		} while (ids.contains(ver));
+		ids.add(ver);
 		this.data = data;
 		this.id = ver;
 		this.endereco = endereco;
@@ -36,7 +28,7 @@ public class Sinistro {
 	}
 
 	// Getters
-	public String getData() {
+	public Date getData() {
 		return data;
 	}
 
@@ -61,7 +53,7 @@ public class Sinistro {
 	}
 
 	// Setters
-	public void setData(String data) {
+	public void setData(Date data) {
 		this.data = data;
 	}
 

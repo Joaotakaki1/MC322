@@ -1,9 +1,7 @@
 import java.util.Date;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.time.Duration;
 import java.time.Instant;
-import java.text.ParseException;
 
 public class ClientePF extends Cliente {
     private final String cpf;
@@ -14,23 +12,19 @@ public class ClientePF extends Cliente {
     private String classeEconomica;
 
     public ClientePF(String nome, String endereco, String educacao, String genero, String classeEconomica,
-            Date dataLicenca, String cpf, Date dataNascimento) {
-        super(nome, endereco);
-        try {
-            if (!validaCPF(cpf)) {
-                throw new Exception("Cpf Inválido");
-            }
-
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        } finally {
+            Date dataLicenca, String cpf, Date dataNascimento, int valorSeguro) throws Exception {
+        super(nome, endereco, valorSeguro);
+        if (Validacao.validaCPF(cpf)) {
             this.cpf = cpf.replaceAll("[^0-9]", "");
-            this.genero = genero;
-            this.dataLicenca = dataLicenca;
-            this.educacao = educacao;
-            this.dataNascimento = dataNascimento;
-            this.classeEconomica = classeEconomica;
+        } else {
+            throw new Exception("Cpf Inválido");
         }
+        this.genero = genero;
+        this.dataLicenca = dataLicenca;
+        this.educacao = educacao;
+        this.dataNascimento = dataNascimento;
+        this.classeEconomica = classeEconomica;
+
     }
 
     // Getters
@@ -79,65 +73,31 @@ public class ClientePF extends Cliente {
         this.classeEconomica = classeEconomica;
     }
 
-    // public String toString() {
-    // SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-    // return super.toString() + "cpf=" + cpf + ", dataNacimento=" +
-    // formato.format(dataNascimento);
-    // }
     @Override
     public String toString() {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        return "ClientePF [cpf=" + cpf + ", dataNascimento=" + formato.format(dataNascimento) + ", genero=" + genero
-                + ", dataLicenca="
-                + formato.format(dataLicenca) + ", educacao=" + educacao + ", classeEconomica=" + classeEconomica + "]";
+        return "ClientePF: " + super.getNome() + "\nCPF: " + cpf + "\nData de Nascimento: "
+                + formato.format(dataNascimento)
+                + "\nGenero: "
+                + genero
+                + "\nData de Licenca: "
+                + formato.format(dataLicenca) + "\nEducacao: " + educacao + "\nClasse Economica: " + classeEconomica
+                + "\n";
     }
 
-    public boolean validaCPF(String cpf) {
-        String cpfNumerico = cpf.replaceAll("[^0-9]", "");
-        if (cpfNumerico.length() == 11) {
-            if (verificaDigitosIguais(cpfNumerico)) {
-                return false;
-            } else {
-                int primeiroVerificador = 0;
-                int multiplicador = 2;
-                for (int i = 8; i >= 0; i--) {
-                    primeiroVerificador += Character.digit(cpfNumerico.charAt(i), 10) * multiplicador;
-                    multiplicador++;
-                }
-                if (primeiroVerificador % 11 < 2) {
-                    primeiroVerificador = 0;
-                } else {
-                    primeiroVerificador = 11 - (primeiroVerificador % 11);
-                }
-                if (primeiroVerificador == Character.digit(cpfNumerico.charAt(9), 10)) {
-                    int segundoVerificador = 0;
-                    int multiplicador2 = 2;
-                    for (int j = 9; j >= 0; j--) {
-                        segundoVerificador += Character.digit(cpfNumerico.charAt(j), 10) * multiplicador2;
-                        multiplicador2++;
-                    }
-                    if (segundoVerificador % 11 < 2) {
-                        segundoVerificador = 0;
-                    } else {
-                        segundoVerificador = 11 - (segundoVerificador % 11);
-                    }
-                    if (segundoVerificador == Character.digit(cpfNumerico.charAt(10), 10)) {
-                        return true;
-                    } else {
-                        return false;
-                    }
+    @Override
 
-                } else {
-                    return false;
-                }
-            }
+    public double calculaScore() {
+        Duration duration = Duration.between(getDataNacimento().toInstant(), Instant.now());
+        long idade = (duration.toDays() / 365);
+        double fIdade = 0;
+        if (idade > 0 && idade < 30) {
+            fIdade = CalculoSeguro.FATOR_18_30.getFator();
+        } else if (idade >= 30 && idade < 30) {
+            fIdade = CalculoSeguro.FATOR_30_60.getFator();
         } else {
-            return false;
+            fIdade = CalculoSeguro.FATOR_60_90.getFator();
         }
-    }
-
-    public double calculaScore(ClientePF cliente){
-        Duration duration = Duration.between(cliente.getDataNacimento().toInstant(), Instant.now());
-        return (1000 * (duration.toDays()/365) * cliente.getListaVeiculos().size());
+        return (CalculoSeguro.VALOR_BASE.getFator() * fIdade * getListaVeiculos().size());
     }
 }
