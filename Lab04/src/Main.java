@@ -245,7 +245,7 @@ public class Main {
 					}
 				}
 				if (!found)
-					System.out.println("Nenhuma seguradora encontrado");
+					System.out.println("Nenhuma seguradora encontrado.");
 				break;
 			case SAIR:
 				break;
