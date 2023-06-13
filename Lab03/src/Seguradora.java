@@ -8,12 +8,6 @@ public class Seguradora {
 	private ArrayList<Sinistro> listaSinistros;
 	private ArrayList<Cliente> listaClientes;
 
-	@Override
-	public String toString() {
-		return "Seguradora [nome=" + nome + ", telefone=" + telefone + ", email=" + email + ", endereco=" + endereco
-				+ ", listaSinistros=" + listaSinistros + ", listaClientes=" + listaClientes + "]";
-	}
-
 	// Contrutor
 	public Seguradora(String nome, String telefone, String email, String endereco) {
 		ArrayList<Sinistro> listaSinistros = new ArrayList<Sinistro>();
@@ -136,5 +130,10 @@ public class Seguradora {
 		for (Sinistro s : listaSinistros)
 			System.out.println(s.toString());
 	}
-
+	
+	@Override
+	public String toString() {
+		return "Seguradora [nome=" + nome + ", telefone=" + telefone + ", email=" + email + ", endereco=" + endereco
+				+ ", listaSinistros=" + listaSinistros + ", listaClientes=" + listaClientes + "]";
+	}
 }

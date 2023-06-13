@@ -4,7 +4,7 @@ public enum SubMenu {
     CADASTRAR_SEGURADORA("Cadastrar seguradora"),
     CADASTRAR_SEGUROPF("Cadastrar Seguro Pessoa Física"),
     CADASTRAR_SEGUROPJ("Cadastrar Seguro Pessoa Jurídica"),
-    CADASTRAR_FROTA("Cadastrar um condutor"),
+    CADASTRAR_FROTA("Cadastrar uma frota"),
     AUTORIZAR_CONDUTOR("Autorizar um condutor"),
     LISTAR_CLIENTES("Listar cliente"),
     LISTAR_SEGUROS("Listar os seguros da seguradora"),

@@ -107,7 +107,7 @@ public abstract class Seguro {
     @Override
     public String toString() {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        return "Seguro: " + id + "\nData de Inicio: " + formato.format(dataInicio) + "\nData de Fim: " + formato.format(dataFim) + "\nLista de Sinistros: " + listaSinistros + "\nLista de Condutores: " + listacondutores + "\nValor Mensal: "
+        return "Seguro: " + id + "\nData de Inicio: " + formato.format(dataInicio) + "\nData de Fim: " + formato.format(dataFim) + "\nQuantidade de Sinistros: " + listaSinistros.size() + "\nQuantidade de Condutores: " + listacondutores.size() + "\nValor Mensal: "
                 + valorMensal;
     }
 }

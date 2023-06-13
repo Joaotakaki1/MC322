@@ -46,7 +46,7 @@ public class SeguroPF extends Seguro {
         for (Condutor condutor : getListacondutores()){
             qntSinistrosCondutores += condutor.getListaSinistros().size();
         }
-        return (int)(CalculoSeguro.VALOR_BASE.getFator()*fIdade*(1+1/(cliente.getListaVeiculos().size()))*(2+(super.getListaSinistros().size()/10))*(5+qntSinistrosCondutores/10));
+        return (int)(CalculoSeguro.VALOR_BASE.getFator()*fIdade*(1+(1/(cliente.getListaVeiculos().size()+2)))*(2+(super.getListaSinistros().size()/10))*(5+qntSinistrosCondutores/10));
     }
 
     @Override

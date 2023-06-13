@@ -23,7 +23,7 @@ public class AppMain {
 		System.out.println("Cliente adicionado com sucesso!");
 		System.out.println(clientePF1);
 		System.out.println("****************************************************************");
-		ClientePF clientePF2 = new ClientePF("Joaoo", "Rua do Joao2", "EM  completo", "Fem", "38428827850", dataPadrao, "joao2@gmail.com", "11457392745");
+		ClientePF clientePF2 = new ClientePF("Joaoo", "Rua do Joao2", "EM  completo", "Fem", "00443734909", dataPadrao, "joao2@gmail.com", "11457392745");
 		seguradoraProto.cadastrarCliente(clientePF2);
 		clientePF2.cadastrarVeiculo(vei2);
 		System.out.println("Cliente adicionado com sucesso!");
@@ -34,7 +34,7 @@ public class AppMain {
 		System.out.println("Cliente adicionado com sucesso!");
 		System.out.println(clientePJ1);
 		System.out.println("****************************************************************");
-		ClientePJ clientePJ2 = new ClientePJ("Conpecccc", "Rua Josue de castro 112", "112345850385", "66070178000117", dataPadrao,"conpec2@gmail.com");
+		ClientePJ clientePJ2 = new ClientePJ("Conpecccc", "Rua Josue de castro 112", "112345850385", "22.472.132/0001-59", dataPadrao,"conpec2@gmail.com");
 		seguradoraProto.cadastrarCliente(clientePJ2);
 		System.out.println("Cliente adicionado com sucesso!");
 		System.out.println(clientePJ2);
@@ -58,9 +58,9 @@ public class AppMain {
 		seguradoraProto.gerarSeguro(clientePJ2, dataPadrao, dataPadrao, frota2, seguradoraProto);
 		System.out.println(seguradoraProto.getListaSeguros());
 		Condutor c1 = new Condutor("38428827850", "c1", "Endereco 1", "email1@gmail.com", dataPadrao, "11234567432");
-		Condutor c2 = new Condutor("38428827850", "c2", "Endereco 2", "email2@gmail.com", dataPadrao, "11234567432");
-		Condutor c3 = new Condutor("11956154698", "c3", "Endereco 3", "email3@gmail.com", dataPadrao, "11234567432");
-		Condutor c4 = new Condutor("11956154698", "c4", "Endereco 4", "email4@gmail.com", dataPadrao, "11234567432");
+		Condutor c2 = new Condutor("28483210240", "c2", "Endereco 2", "email2@gmail.com", dataPadrao, "11234567432");
+		Condutor c3 = new Condutor("71367545188", "c3", "Endereco 3", "email3@gmail.com", dataPadrao, "11234567432");
+		Condutor c4 = new Condutor("75438583200", "c4", "Endereco 4", "email4@gmail.com", dataPadrao, "11234567432");
 		seguradoraProto.getListaSeguros().get(0).autorizarCondutor(c1);
 		System.out.println("Condutor autorizado com sucesso gerado com sucesso!");
 		System.out.println(seguradoraProto.getListaSeguros().get(0).getListacondutores());
@@ -226,7 +226,8 @@ public class AppMain {
 
 	private static Seguro encontraSeguro (Scanner scanner, Seguradora seguradora){
 		System.out.println("Informe o id do seguro: ");
-		Integer id = scanner.nextInt();
+		String entrada = scanner.nextLine();
+		int id = Integer.parseInt(entrada);
 		for (Seguro seguro : seguradora.getListaSeguros()){
 			if (seguro.getId() == id){
 				return seguro;
@@ -299,6 +300,7 @@ public class AppMain {
 							if (condutor.getCpf().equals(cpfCond)){
 								Sinistro s = new Sinistro(dateFormat, enderecoSt, condutor, seguro);
 								if (seguro.gerarSinistro(s)){
+									seguro.setValorMensal(seguro.calcularValor());
 									System.out.println("Sinistro gerado com sucesso!");
 								} else
 									System.out.println("Erro ao gerar o sinistro!");
@@ -434,11 +436,27 @@ public class AppMain {
 						Veiculo vei = new Veiculo(placa, marca, modelo, anoFabricacao);
 						if (cliente instanceof ClientePF) {
 							((ClientePF)cliente).cadastrarVeiculo(vei);
+							for (Seguro s : seguradora.getListaSeguros()){
+								try{
+									if (((SeguroPF)s).getCliente().equals((ClientePF)cliente)){
+										s.setValorMensal(((SeguroPF)s).calcularValor());
+									}
+								} catch (Exception e) {
+								}
+							}
 							System.out.println("Veiculo cadastrado com sucesso!");
 						} else {
 							frota = encontraFrota(scanner, ((ClientePJ)cliente));
 							if (frota != null){
 								frota.addVeiculo(vei);
+								for (Seguro s : seguradora.getListaSeguros()){
+									try{
+										if (((SeguroPJ)s).getClientePJ().equals((ClientePJ)cliente)){
+											s.setValorMensal(((SeguroPJ)s).calcularValor());
+										}
+									} catch (Exception e) {
+									}
+								}
 								System.out.println("Veiculo cadastrado com sucesso!");
 							} else
 								System.out.println("Nenhuma frota encontrada.");
@@ -538,6 +556,14 @@ public class AppMain {
 							f.getListaVeiculos().add(vei);
 						}
 						if (((ClientePJ)cliente).getListaFrota().add(f)){
+							// for (Seguro s : seguradora.getListaSeguros()){
+							// 	try{
+							// 		if (((SeguroPJ)s).getClientePJ().equals((ClientePJ)cliente)){
+							// 			s.setValorMensal(((SeguroPJ)s).calcularValor());
+							// 		}
+							// 	} catch (Exception e) {
+							// 	}
+							// }
 							System.out.println("Frota cadastrada com sucesso!");
 						} else
 							System.out.println("Erro ao cadastrar a frota.");
