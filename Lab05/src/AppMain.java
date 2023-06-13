@@ -640,13 +640,13 @@ public class AppMain {
 					if (opcao == 0){
 						cliente = encontraClientePF(seguradora, scanner);
 						if (cliente != null){
-							seguradora.getSinistroPorCliente((ClientePF)cliente);
+							System.out.println(seguradora.getSinistroPorCliente((ClientePF)cliente));
 						} else 
 							System.out.println("Cliente nao encontrada.");
 					} else {
 						cliente = encontraClientePJ(seguradora, scanner);
 						if (cliente != null){
-							seguradora.getSinistroPorCliente((ClientePJ)cliente);
+							System.out.println(seguradora.getSinistroPorCliente((ClientePJ)cliente));
 						} else 
 							System.out.println("Cliente nao encontrada.");
 					}

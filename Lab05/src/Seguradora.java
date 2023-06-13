@@ -186,20 +186,26 @@ public class Seguradora {
 	public ArrayList<Sinistro> getSinistroPorCliente(ClientePF cliente){
 		ArrayList<Sinistro> sinistrosCliente = new ArrayList<Sinistro>();
 		for (Seguro s : listaSeguros){
-			if (((SeguroPF) s).getCliente() instanceof ClientePF){
-					sinistrosCliente.addAll(0, s.getListaSinistros());
+			try{
+				if (((SeguroPF) s).getCliente() instanceof ClientePF){
+						sinistrosCliente.addAll(0, s.getListaSinistros());
 				}
+			}catch (Exception e){
 			}
+		}
 		return sinistrosCliente;
 	}
 
 	public ArrayList<Sinistro> getSinistroPorCliente(ClientePJ cliente){
 		ArrayList<Sinistro> sinistrosCliente = new ArrayList<Sinistro>();
 		for (Seguro s : listaSeguros){
-			if (((SeguroPJ) s).getClientePJ() instanceof ClientePJ){
-					sinistrosCliente.addAll(0, s.getListaSinistros());
-				}
+			try{
+				if (((SeguroPJ) s).getClientePJ() instanceof ClientePJ){
+						sinistrosCliente.addAll(0, s.getListaSinistros());
+					}
+			}catch (Exception e){
 			}
+		}
 		return sinistrosCliente;
 	}
 }
