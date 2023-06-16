@@ -133,25 +133,25 @@ public class Seguradora {
 			System.out.println("Não há cleintes cadastrados");
 			return false;
 		}
-		for (Seguro s : listaSeguros) { 
+		for (int i = 0; i < listaSeguros.size(); i++) { 
 			try {
-				if ((((SeguroPF) s).getCliente().getCpf()).equals(c)) {
-					listaSeguros.remove(s);
+				if ((((SeguroPF) listaSeguros.get(i)).getCliente().getCpf()).equals(c)) {
+					listaSeguros.remove(listaSeguros.get(i));
 				}
 			} catch (Exception e) {
-				if ((((SeguroPJ) s).getClientePJ().getCnpj()).equals(c)) {
-					listaSeguros.remove(s);
+				if ((((SeguroPJ) listaSeguros.get(i)).getClientePJ().getCnpj()).equals(c)) {
+					listaSeguros.remove(listaSeguros.get(i));
 				}
 			}
 		}
-		for (Cliente cliente : listaClientes){
+		for (int i=0; i < listaClientes.size(); i++){
 			try{
-				if (((ClientePF)cliente).getCpf().equals(c)){
-					return listaClientes.remove(cliente);
+				if (((ClientePF)listaClientes.get(i)).getCpf().equals(c)){
+					return listaClientes.remove(listaClientes.get(i));
 				}
 			} catch (Exception e){
-				if (((ClientePJ)cliente).getCnpj().equals(c)){
-					return listaClientes.remove(cliente);
+				if (((ClientePJ)listaClientes.get(i)).getCnpj().equals(c)){
+					return listaClientes.remove(listaClientes.get(i));
 				}
 			}
 		}
