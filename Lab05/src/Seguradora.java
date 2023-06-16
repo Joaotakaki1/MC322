@@ -133,17 +133,25 @@ public class Seguradora {
 			System.out.println("Não há cleintes cadastrados");
 			return false;
 		}
-		/// CPF
 		for (Seguro s : listaSeguros) { 
 			try {
 				if ((((SeguroPF) s).getCliente().getCpf()).equals(c)) {
-					s.getListaSinistros().clear();
-					return listaClientes.remove(((SeguroPF) s).getCliente());
+					listaSeguros.remove(s);
 				}
 			} catch (Exception e) {
 				if ((((SeguroPJ) s).getClientePJ().getCnpj()).equals(c)) {
-					s.getListaSinistros().clear();
-					return listaClientes.remove(((SeguroPJ) s).getClientePJ());
+					listaSeguros.remove(s);
+				}
+			}
+		}
+		for (Cliente cliente : listaClientes){
+			try{
+				if (((ClientePF)cliente).getCpf().equals(c)){
+					return listaClientes.remove(cliente);
+				}
+			} catch (Exception e){
+				if (((ClientePJ)cliente).getCnpj().equals(c)){
+					return listaClientes.remove(cliente);
 				}
 			}
 		}
