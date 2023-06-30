@@ -1,0 +1,109 @@
+id;dataInicio,;dataFim;seguradora;listaSinistros;listacondutores;veiculo/frota;valorMensalSeguro: -1625161134
+Data de Inicio: 10/10/2000
+Data de Fim: 10/10/2000
+Quantidade de Sinistros: 1
+Quantidade de Condutores: 1
+Valor Mensal: 125
+Veiculo: Veiculo
+Placa: DYG-2932
+Marca: Chevrolet
+Modelo: S10
+Ano de Fabricacao: 31/12/1969
+Cliente: Cliente:Joao
+Endereco: Rua do Joao
+Telefone: 11457392745
+Email: joao@gmail.com
+CPF: 38428827850
+Data de Nascimento: 10/10/2000
+Genero: Masc
+Educacao: EM  completo
+Lista Veiculos: [Veiculo
+Placa: DYG-2932
+Marca: Chevrolet
+Modelo: S10
+Ano de Fabricacao: 31/12/1969]Seguro: -1182983870
+Data de Inicio: 10/10/2000
+Data de Fim: 10/10/2000
+Quantidade de Sinistros: 1
+Quantidade de Condutores: 1
+Valor Mensal: 125
+Veiculo: Veiculo
+Placa: DYG-2933
+Marca: JEEP
+Modelo: Renegade
+Ano de Fabricacao: 31/12/1969
+Cliente: Cliente:Joaoo
+Endereco: Rua do Joao2
+Telefone: 11457392745
+Email: joao2@gmail.com
+CPF: 00443734909
+Data de Nascimento: 10/10/2000
+Genero: Fem
+Educacao: EM  completo
+Lista Veiculos: [Veiculo
+Placa: DYG-2933
+Marca: JEEP
+Modelo: Renegade
+Ano de Fabricacao: 31/12/1969]Seguro: -802074161
+Data de Inicio: 10/10/2000
+Data de Fim: 10/10/2000
+Quantidade de Sinistros: 1
+Quantidade de Condutores: 1
+Valor Mensal: 3000
+Frota: Frota: 660837282
+Lista de Veiculos: [Veiculo
+Placa: DYG-2934
+Marca: Toyota
+Modelo: Corolla
+Ano de Fabricacao: 31/12/1969, Veiculo
+Placa: DYG-2934
+Marca: Toyota
+Modelo: Corolla
+Ano de Fabricacao: 31/12/1969, Veiculo
+Placa: DYG-2936
+Marca: Hyundai
+Modelo: HB20
+Ano de Fabricacao: 31/12/1969]
+Cliente: Cliente:Conpec
+Endereco: Rua Josue de castro 11
+Telefone: 119354850385
+Email: conpec@gmail.com
+CNPJ: 66070178000117
+Data de Fundação: 10/10/2000
+Lista de Frotas: [Frota: 660837282
+Lista de Veiculos: [Veiculo
+Placa: DYG-2934
+Marca: Toyota
+Modelo: Corolla
+Ano de Fabricacao: 31/12/1969, Veiculo
+Placa: DYG-2934
+Marca: Toyota
+Modelo: Corolla
+Ano de Fabricacao: 31/12/1969, Veiculo
+Placa: DYG-2936
+Marca: Hyundai
+Modelo: HB20
+Ano de Fabricacao: 31/12/1969]]Seguro: 1215358281
+Data de Inicio: 10/10/2000
+Data de Fim: 10/10/2000
+Quantidade de Sinistros: 1
+Quantidade de Condutores: 1
+Valor Mensal: 4000
+Frota: Frota: -714423245
+Lista de Veiculos: [Veiculo
+Placa: DYG-2936
+Marca: Hyundai
+Modelo: HB20
+Ano de Fabricacao: 31/12/1969]
+Cliente: Cliente:Conpecccc
+Endereco: Rua Josue de castro 112
+Telefone: 112345850385
+Email: conpec2@gmail.com
+CNPJ: 22472132000159
+Data de Fundação: 10/10/2000
+Lista de Frotas: [Frota: -714423245
+Lista de Veiculos: [Veiculo
+Placa: DYG-2936
+Marca: Hyundai
+Modelo: HB20
+Ano de Fabricacao: 31/12/1969]]
